@@ -5,3 +5,27 @@ a {
 #mapid { 
   height: 500px; 
 }
+
+.return {
+  font-size: 30px;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  }
+  
+  .div1 { grid-area: 1 / 1 / 5 / 5; }
+
+#bicicles input[type="text"]{
+    border: none;
+    background-color: white;
+    color: black;
+}
+  
+td span{
+  display: none;
+}

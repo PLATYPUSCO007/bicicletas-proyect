@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    
+    a(href='/bicicletas/create') Nueva Bicicleta 🚴 🔥 
+    .parent
+        .div1
+            h3 Hola
+    form#bicicles(action='bicicletas' method='post')
+        table.table
+            thead
+                tr
+                    th(scope='col')
+                    th(scope='col') 
+                        label(description='' for='id') Id
+                    th(scope='col') 
+                        label(description='' for='color') Color
+                    th(scope='col') 
+                        label(description='' for='modelo') Modelo
+                    th(scope='col') 
+                        label(description='' for='ubicacion') Ubicacion
+                    th(scope='col') 
+                    th(scope='col') 
+            tbody
+                each bici in bicis
+                    tr
+                        td(scope='row')
+                            input(type='checkbox' class=`entity${bici.id} check`)
+                        td
+                            input(type='text' name='id' value=bici.id class=`entity${bici.id} dis out` maxlength='4' size='4') 
+                        td
+                            input(type='text' name='color' value=bici.color class=`entity${bici.id} dis` disabled)
+                        td
+                            input(type='text' name='modelo' value=bici.modelo class=`entity${bici.id} dis` disabled)
+                        td  
+                            input(type='text' name='ubicacion' value=bici.ubicacion class=`entity${bici.id} dis` disabled)
+                        td
+                            #remove
+                                a(href='http://localhost:3000/bicicletas/remove/' + bici.id) Eliminar
+                        td
+                            span(class=`${bici.id}`)
+                                input#send(type='submit' name='submit' value='Update')
+
+

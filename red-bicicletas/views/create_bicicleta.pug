@@ -1,0 +1,46 @@
+extends layout
+
+block content
+    a.return(href='/bicicletas') ⬅ 
+
+    br
+    br
+
+    img#top(src='/images/top.png' alt='')
+    #form_container
+      h1
+        a Nueva Bicicleta
+      form#form_114776.appnitro(method='post' action='create')
+        .form_description
+          h3 Nueva Bicicleta 🚲
+          p Ingrese los datos correspondientes a la nueva bicicleta.
+        ul
+          li#li_1
+            label.description(for='id') Id 
+            div
+              input#element_1.element.text.small(name='id' type='text' maxlength='255' value='')
+          li#li_2
+            label.description(for='color') Color 
+            div
+              input#element_2.element.text.medium(name='color' type='text' maxlength='255' value='')
+          li#li_4
+            label.description(for='modelo') Modelo 
+            div
+              input#element_4.element.text.medium(name='modelo' type='text' maxlength='255' value='')
+          li#li_3
+            label.description(for='lat') Latitud 
+            div
+              input#element_3.element.text.medium(name='lat' type='text' maxlength='255' value='')
+            p#guide_3.guidelines
+              small -34,2342
+          li#li_5
+            label.description(for='lng') Longitud 
+            div
+              input#element_5.element.text.medium(name='lng' type='text' maxlength='255' value='')
+            p#guide_5.guidelines
+              small 23.342342
+          li.buttons
+            input(type='hidden' name='form_id' value='114776')
+            input#saveForm.button_text(type='submit' name='submit' value='Enviar')
+
+
