@@ -30,8 +30,8 @@ const Bicicleta = {
     }
 }
 
-let a = new Bicicleta.construct('1', 'azul', 'Mountanin', [4.6087653, -74.1863059]);
-let b = new Bicicleta.construct('2', 'rojo', 'Titanium', [4.6148339, -74.1892292]);
+let a = new Bicicleta.construct('1', 'azul', 'Mountanin', [6.2334221, -75.5910816]);
+let b = new Bicicleta.construct('2', 'rojo', 'Titanium', [6.2569647,-75.6286473]);
 
 Bicicleta.add(a);
 Bicicleta.add(b);

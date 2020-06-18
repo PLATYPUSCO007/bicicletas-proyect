@@ -14,3 +14,15 @@ L.polygon([
 L.marker([4.6087653, -74.1863059]).addTo(mymap);
 L.marker([4.6148339, -74.1892292]).addTo(mymap);
 L.marker([4.6235807, -74.1877524]).addTo(mymap);
+
+$.ajax({
+    type: "get",
+    url: "api",
+    dataType: "json",
+    success: function (response) {
+        console.log(response);
+        response.bicicletas.forEach(element => {
+            L.marker(element.ubicacion, {title: element.id}).addTo(mymap);
+        });
+    }
+});
