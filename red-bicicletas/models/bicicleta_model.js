@@ -15,7 +15,7 @@ const Bicicleta = {
     findById: async function(id_bici){
         const bici = this.allBicis.find(bicicleta => bicicleta.id == id_bici);
         if (bici)
-            return bici
+            return bici;
         else
             throw new Error(`No se encontro la bicicleta con id ${id_bici}`); 
     },
@@ -30,10 +30,10 @@ const Bicicleta = {
     }
 }
 
-let a = new Bicicleta.construct('1', 'azul', 'Mountanin', [6.2334221, -75.5910816]);
-let b = new Bicicleta.construct('2', 'rojo', 'Titanium', [6.2569647,-75.6286473]);
+//let a = new Bicicleta.construct('1', 'azul', 'Mountanin', [6.2334221, -75.5910816]);
+//let b = new Bicicleta.construct('2', 'rojo', 'Titanium', [6.2569647,-75.6286473]);
 
-Bicicleta.add(a);
-Bicicleta.add(b);
+//Bicicleta.add(a);
+//Bicicleta.add(b);
 
 module.exports = Bicicleta;
