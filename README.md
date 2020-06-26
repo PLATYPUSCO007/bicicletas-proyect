@@ -1,6 +1,6 @@
 # 🔥 Proyecto WEB y API *COUSERA* 🔥 
 
-Proyecto de aprendizaje de "Desarrollo del lado servidor: NodeJS, Express y Mongo - Semana 1".
+Proyecto de aprendizaje de "Desarrollo del lado servidor: NodeJS, Express y Mongo - Semana 2".
 
 ---
 
@@ -23,10 +23,27 @@ npm run devstart
 ```
 ---
 
-## Repositorio 📁 🥊 
+## Test 🧠  
 
+Ejecute el siguiente comando para ejecutar los tests.
+
+```bash
+npm test
+```
+O ejecute
+
+```bash
+jasmine spec/models/*
+jasmine spec/api/*
 ```
 
+---
+
+## Repositorio 📁 🥊 
+
+```bash
 ## link Bitbucket
 
 (https://PLATYPUSCO007@bitbucket.org/PLATYPUSCO007/test_git.git)
+
+```
