@@ -12,33 +12,37 @@ block content
                 tr
                     th(scope='col')
                     th(scope='col') 
-                        label(description='' for='id') Id
+                        label(description='' for='id') Code
                     th(scope='col') 
                         label(description='' for='color') Color
                     th(scope='col') 
                         label(description='' for='modelo') Modelo
                     th(scope='col') 
-                        label(description='' for='ubicacion') Ubicacion
+                        label(description='' for='lat') Latitud
+                    th(scope='col') 
+                        label(description='' for='lng') Longitud
                     th(scope='col') 
                     th(scope='col') 
             tbody
                 each bici in bicis
                     tr
                         td(scope='row')
-                            input(type='checkbox' class=`entity${bici.id} check`)
+                            input(type='checkbox' class=`entity${bici.code} check`)
                         td
-                            input(type='text' name='id' value=bici.id class=`entity${bici.id} dis out` maxlength='4' size='4') 
+                            input(type='text' name='code' value=bici.code class=`entity${bici.code} dis out` maxlength='4' size='4') 
                         td
-                            input(type='text' name='color' value=bici.color class=`entity${bici.id} dis` disabled)
+                            input(type='text' name='color' value=bici.color class=`entity${bici.code} dis` disabled)
                         td
-                            input(type='text' name='modelo' value=bici.modelo class=`entity${bici.id} dis` disabled)
+                            input(type='text' name='modelo' value=bici.modelo class=`entity${bici.code} dis` disabled)
                         td  
-                            input(type='text' name='ubicacion' value=bici.ubicacion class=`entity${bici.id} dis` disabled)
+                            input(type='text' name='lat' value=bici.ubicacion[0] class=`entity${bici.code} dis` disabled)
+                        td  
+                            input(type='text' name='lng' value=bici.ubicacion[1] class=`entity${bici.code} dis` disabled)
                         td
                             #remove
-                                a(href='http://localhost:3000/bicicletas/remove/' + bici.id) Eliminar
+                                a(href='http://localhost:3000/bicicletas/remove/' + bici.code) Eliminar
                         td
-                            span(class=`${bici.id}`)
+                            span(class=`${bici.code}`)
                                 input#send(type='submit' name='submit' value='Update')
 
 

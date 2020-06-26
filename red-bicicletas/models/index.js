@@ -1,3 +1,5 @@
 module.exports = {
-    Bicicleta: require('./bicicleta_model')
+    Reserva: require('./reserva_model'),
+    Bicicleta: require('./bicicleta_model'),
+    Usuario: require('./usuario_model')
 }

@@ -8,4 +8,4 @@ Router.post('/create', BicicletaController.bicicleta_post);
 Router.get('/remove/:bici_id', BicicletaController.bicicleta_remove);
 Router.post('/', BicicletaController.bicicleta_update);
 
-module.exports = Router;
+module.exports = Router; 

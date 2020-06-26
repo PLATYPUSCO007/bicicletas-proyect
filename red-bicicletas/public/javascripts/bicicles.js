@@ -35,7 +35,8 @@ $(document).ready(function(){
     }
 
     function enabled_update(value, bool){
-        const str = value.slice(value.length - 1);
+        const regex = /(\d+)/g;
+        const str = value.match(regex);
         $(`.${str}`).css('display', bool);
     }
 

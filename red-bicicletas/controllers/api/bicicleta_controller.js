@@ -1,14 +1,15 @@
 const {Bicicleta} = require('../../models');
 
 exports.bicicleta_list = async function(req, res){
-    res.status(200).json({
-        bicicletas: Bicicleta.allBicis
+    Bicicleta.allBicis(function(error, bicis){
+        res.status(200).json({
+            bicicletas: bicis
+        });
     });
 }
 
 exports.bicicleta_create = async function(req, res){
-    const bici = new Bicicleta.construct(req.body.id, req.body.color, req.body.modelo);
-    bici.ubicacion = [req.body.lat, req.body.lng];
+    const bici = await Bicicleta.createInstance(req.body.code, req.body.color, req.body.modelo, [req.body.lat, req.body.lng]);
     Bicicleta.add(bici);
     res.status(200).send({
         message: 'Ok',
@@ -17,20 +18,15 @@ exports.bicicleta_create = async function(req, res){
 }
 
 exports.bicicleta_delete = async function(req, res){
-    const {id} = req.body;
-    Bicicleta.remove(id);
+    const {code} = req.body;
+    Bicicleta.removeByCode(code);
     res.status(204).send();
 }
 
 exports.bicicleta_update = async function(req, res){
-    const {id} = req.body;
-    const update_bici =  Bicicleta.findById(id);
-    update_bici.id = req.body.id;
-    update_bici.color = req.body.color;
-    update_bici.modelo = req.body.modelo;
-    update_bici.ubicacion = [req.body.lat, req.body.lng];
-    Bicicleta.remove(id);
-    Bicicleta.add(update_bici);
+    const {_id} = req.body;
+    const bicicleta = `{"code": ${req.body.code}, "color": ${req.body.color}, "modelo": ${req.body.modelo}, "ubicacion" [${req.body.lat}, ${req.body.lng}]}`;
+    const update_bici = await Bicicleta.update(_id, bicicleta);
     res.status(201).json({
         update_bici
     });
