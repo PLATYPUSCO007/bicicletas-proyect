@@ -11,6 +11,9 @@ block content
       span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav
+        if user.confirm
+          li.nav-item
+            a.nav-link.js-scroll-trigger(href='http://localhost:3000/logout') Cerrar Sesion
         li.nav-item
           a.nav-link.js-scroll-trigger(href='#about') About
         li.nav-item
