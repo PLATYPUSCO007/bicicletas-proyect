@@ -1,6 +1,6 @@
 # 🔥 Proyecto WEB y API *COUSERA* 🔥 
 
-Proyecto de aprendizaje de "Desarrollo del lado servidor: NodeJS, Express y Mongo - Semana 2".
+Proyecto de aprendizaje de "Desarrollo del lado servidor: NodeJS, Express y Mongo - Semana 3".
 
 ---
 
