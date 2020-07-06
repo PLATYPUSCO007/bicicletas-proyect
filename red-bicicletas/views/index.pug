@@ -9,6 +9,8 @@ block content
         img.img-fluid.img-profile.rounded-circle.mx-auto.mb-2(src='/images/profile.jpg' alt='')
     button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
       span.navbar-toggler-icon
+    if token
+      span(id=token class='tk')
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav
         if user.confirm

@@ -14,15 +14,20 @@ var bicicletasRouter = require('./routes/bicicletas_route');
 const tokenRouter = require('./routes/token_route');
 const {Token, Usuario} = require('./models');
 
+
+var AuthApi = require('./routes/api/auth_route');
 var bicicletasApi = require('./routes/api/bicicleta_route');
 var usuariosApi = require('./routes/api/usuario_route');
 var reservasApi = require('./routes/api/reservas_route');
 
 const {AuthMiddleware} = require('./middlewares');
+const {AuthApiMiddleware} = require('./middlewares/api');
 
 const store = new session.MemoryStore;
 
 var app = express();
+
+app.set('secretKey', 'janjvi_sd!234*msh');
 
 app.use(session({
   cookie: {
@@ -60,9 +65,13 @@ app.post('/login', function (req, res, next){
   passport.authenticate('local', function (error, usuario, info) {  
     if(error) return next(error);
     if(!usuario) return res.render('session/login', {info});
-    req.logIn(usuario, function(error){
+    req.logIn(usuario, async function(error){
       if(error) return next(error);
-      return res.render('index', {title: 'Ricardo Enciso', user: {confirm: 'User Login'}});
+      const [tokenError, token] = await PromiseHelper.handle(Token.findOne({_userId: usuario._id}));
+      if(token){
+        console.log(token);
+      }
+      return res.render('index', {title: 'Ricardo Enciso', user: {confirm: 'User Login'}, token: token.token});
     });
   })(req, res, next);
 });
@@ -125,9 +134,10 @@ app.use('/usuarios', usersRouter);
 app.use('/bicicletas', AuthMiddleware, bicicletasRouter);
 app.use('/token', tokenRouter);
 
-app.use('/api', bicicletasApi);
-app.use('/api/usuarios', usuariosApi);
-app.use('/api/reservas', reservasApi);
+app.use('/api', AuthApiMiddleware, bicicletasApi);
+app.use('/api/usuarios', AuthApiMiddleware, usuariosApi);
+app.use('/api/reservas', AuthApiMiddleware, reservasApi);
+app.use('/api/auth', AuthApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

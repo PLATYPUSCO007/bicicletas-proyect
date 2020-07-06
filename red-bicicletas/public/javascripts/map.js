@@ -19,6 +19,7 @@ $.ajax({
     type: "get",
     url: "api",
     dataType: "json",
+    headers: {"x-acces-token": "Bearer asdfasf"},
     success: function (response) {
         console.log(response);
         response.bicicletas.forEach(element => {
