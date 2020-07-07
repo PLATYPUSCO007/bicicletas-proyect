@@ -70,8 +70,9 @@ app.post('/login', function (req, res, next){
       const [tokenError, token] = await PromiseHelper.handle(Token.findOne({_userId: usuario._id}));
       if(token){
         console.log(token);
+        return res.render('index', {title: 'Ricardo Enciso', user: {confirm: 'User Login'}, token: token.token});
       }
-      return res.render('index', {title: 'Ricardo Enciso', user: {confirm: 'User Login'}, token: token.token});
+      return res.render('index', {title: 'Ricardo Enciso', user: {confirm: 'User Login'}, token: {}});
     });
   })(req, res, next);
 });
