@@ -9,8 +9,9 @@ exports.usuario_list = async function(req, res){
 }
 
 exports.usuario_create = async function(req, res){
-    const user = new Usuario({nombre: req.body.nombre});
+    const user = new Usuario({nombre: req.body.nombre, email: req.body.email, password: req.body.password});
     const new_user =  await user.save();
+    if(!new_user) res.status(500).json({msg: 'No se guardo el usuario'});
     res.status(200).json(new_user);
 }
 
