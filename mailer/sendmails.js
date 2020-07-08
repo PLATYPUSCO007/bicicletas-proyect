@@ -5,7 +5,9 @@ let mailConfig;
 
 if(process.env.NODE_ENV === 'production'){
     const options = {
+        service: 'SendGrid',
         auth: {
+            api_user: process.env.SENDGRID_USERNAME,
             api_key: process.env.SENDGRID_API_KEY
         }
     }
@@ -14,7 +16,9 @@ if(process.env.NODE_ENV === 'production'){
     if(process.env.NODE_ENV === 'staging'){
         console.log('XXXXXXXXXXXX');
         const options = {
+            service: 'SendGrid',
             auth: {
+                api_user: process.env.SENDGRID_USERNAME,
                 api_key: process.env.SENDGRID_API_KEY
             }
         }
