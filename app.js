@@ -140,6 +140,10 @@ app.use('/policies', function(req, res){
   res.sendfile('public/privacy_policy.html');
 });
 
+app.use('/google12b13b5fd72ee2fe', function(req, res){
+  res.sendfile('public/google12b13b5fd72ee2fe.html');
+});
+
 app.use('/api', AuthApiMiddleware, bicicletasApi);
 app.use('/api/usuarios', AuthApiMiddleware, usuariosApi);
 app.use('/api/reservas', AuthApiMiddleware, reservasApi);
