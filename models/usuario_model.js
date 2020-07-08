@@ -86,7 +86,7 @@ usuarioSchema.methods.resetPassword = function(cb){
         if(err)
             return console.log(err);
         const mail_options = {
-            from: 'no-reply@redbicicletas.com',
+            from: 'william.enciso@cun.edu.co',
             to: email_destination,
             subject: 'Red Bicicletas - Reseteo de password',
             text: 'Hola\n\n' + 'Para resetear su password haga click en el siguiente enlace: \n' + 'http://localhost:3000' + '\/resetPassword\/' + token.token + '.\n'
