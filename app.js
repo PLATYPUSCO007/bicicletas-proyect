@@ -137,7 +137,7 @@ app.use('/bicicletas', AuthMiddleware, bicicletasRouter);
 app.use('/token', tokenRouter);
 
 app.use('/policies', function(req, res){
-  res.render('policies');
+  res.sendfile('public/privacy_policy.html');
 });
 
 app.use('/api', AuthApiMiddleware, bicicletasApi);
