@@ -173,9 +173,9 @@ app.get('/auth/google/callback', passport.authenticate('google',
   })
 );
 
-app.use('/api', AuthApiMiddleware, bicicletasApi);
-app.use('/api/usuarios', AuthApiMiddleware, usuariosApi);
-app.use('/api/reservas', AuthApiMiddleware, reservasApi);
+app.use('/api' , bicicletasApi);
+app.use('/api/usuarios', usuariosApi);
+app.use('/api/reservas' , reservasApi);
 app.use('/api/auth', AuthApi);
 
 // catch 404 and forward to error handler

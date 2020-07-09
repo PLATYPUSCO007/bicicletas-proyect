@@ -50,5 +50,25 @@ module.exports = {
                 data: null
             })
         });
+    },
+    authFacebookToken: function (req, res, next){  
+        if(req.user){
+            req.user.save().then(()=>{
+                const token = jwt.sign({id: req.user.id}, req.app.get('secretKey'), {expiresIn: '7d'});
+                res.status(200).json({
+                    message: 'Usuario encontrado o creado',
+                    data: {user: req.user, token: token}
+                });
+            }).catch((error)=>{
+                console.log(error);
+                res.status(500).json({
+                    message: error.message
+                });
+            });
+        }else{
+            res.status(401).send({
+                message: 'No se completo la solicitud'
+            });
+        }
     }
 }

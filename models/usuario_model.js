@@ -40,7 +40,9 @@ const usuarioSchema = new Schema({
     verify: {
         type: Boolean,
         default: false
-    }
+    },
+    googleId: String,
+    facebookId: String
 });
 
 
@@ -121,6 +123,38 @@ usuarioSchema.statics.findOneOrCreateByGoogle = function findOneOrCreate(conditi
                 values.nombre = condition.displayName || 'SIN NOMBRE';
                 values.verify = true;
                 values.password = condition._json.etag;
+                console.log('----VALUES----');
+                console.log(values);
+                self.create(values, (error, result)=>{
+                    if(error) console.log(error);
+                    return cb(error, result);
+                })
+                
+            }
+        }
+    );
+}
+
+usuarioSchema.statics.findOneOrCreateByFacebook = function findOneOrCreate(condition, cb) {  
+    const self = this;
+    console.log(condition);
+    self.findOne({
+        $or:[
+            {'facebookId': condition.id}, {'email': condition.emails[0].value}
+        ] 
+    },
+        (error, result) => {
+            if(result){
+                cb(error, result);
+            }else{
+                console.log('---CONDITION----');
+                console.log(condition);
+                let values = {};
+                values.facebookId = condition.id;
+                values.email = condition.emails[0].value;
+                values.nombre = condition.displayName || 'SIN NOMBRE';
+                values.verify = true;
+                values.password = crypto.randomBytes(16).toString('hex');
                 console.log('----VALUES----');
                 console.log(values);
                 self.create(values, (error, result)=>{
