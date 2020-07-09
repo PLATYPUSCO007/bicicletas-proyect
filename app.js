@@ -7,6 +7,7 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('./config/passport');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const {PromiseHelper} = require('./helpers');
 
 var indexRouter = require('./routes/index_route');
@@ -23,8 +24,21 @@ var reservasApi = require('./routes/api/reservas_route');
 
 const {AuthMiddleware} = require('./middlewares');
 const {AuthApiMiddleware} = require('./middlewares/api');
+const { assert } = require('console');
 
-const store = new session.MemoryStore;
+let store;
+if(process.env.NODE_ENV === 'development'){
+  store = new session.MemoryStore;
+}else{
+  store = new MongoDBStore({
+    uri: process.env.MONGO_URI,
+    collection: 'sessions'
+  });
+  store.on('error', function(error){
+    assert.ifError(error);
+    assert.ok(false);
+  });
+}
 
 var app = express();
 
@@ -143,6 +157,21 @@ app.use('/policies', function(req, res){
 app.use('/google12b13b5fd72ee2fe', function(req, res){
   res.sendfile('public/google12b13b5fd72ee2fe.html');
 });
+
+app.get('/auth/google', 
+        passport.authenticate('google', 
+        {
+          scope: ['https://www.googleapis.com/auth/plus.login',
+                  'https://www.googleapis.com/auth/plus.profile.emails.read']
+        })
+);
+
+app.get('/auth/google/callback', passport.authenticate('google', 
+  {
+    successRedirect: '/',
+    failureRedirect: '/error'
+  })
+);
 
 app.use('/api', AuthApiMiddleware, bicicletasApi);
 app.use('/api/usuarios', AuthApiMiddleware, usuariosApi);
