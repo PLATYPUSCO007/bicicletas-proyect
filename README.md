@@ -1,6 +1,6 @@
 # 🔥 Proyecto WEB y API *COUSERA* 🔥 
 
-Proyecto de aprendizaje de "Desarrollo del lado servidor: NodeJS, Express y Mongo - Semana 3".
+Proyecto de aprendizaje de "Desarrollo del lado servidor: NodeJS, Express y Mongo - Semana 4".
 
 ---
 
@@ -39,11 +39,20 @@ jasmine spec/api/*
 
 ---
 
-## Repositorio 📁 🥊 
+## Repositorio 📁
 
 ```bash
 ## link Bitbucket
 
 (https://PLATYPUSCO007@bitbucket.org/PLATYPUSCO007/test_git.git)
+
+```
+
+## Heroku 🎆 🥊 🎆
+
+```bash
+## link Heroku
+
+(https://platypusco-red-bicicletas.herokuapp.com/)
 
 ```
